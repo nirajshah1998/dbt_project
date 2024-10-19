@@ -1,0 +1,122 @@
+version: 2
+
+sources:
+
+  - name: dominos_pizza      # Name of the source, to be used while calling the source file.
+    database: dbt_project    # Name of the database.
+    schema: DOMINOS_PIZZA    # Name of the schema, where the tables are located in Snowflake.
+
+    tables:
+      - name: category_and_ingredients
+        description: "Maps pizzas to their respective categories (e.g., Veg, Non-Veg) and ingredients."
+        columns:
+          - name: PIZZA_ID
+            description: "The unique identifier for the pizza."
+          - name: PIZZA_NAME
+            description: "The name of the pizza."
+          - name: CATEGORY
+            description: "The category of the pizza (e.g., Veg, Non-Veg)."
+          - name: INGREDIENTS
+            description: "The list of ingredients in the pizza."
+
+      - name: ingredients_number
+        description: "Contains information about the number of pizzas that include specific ingredients."
+        columns:
+          - name: INGREDIENT
+            description: "The ingredient used in pizzas."
+          - name: NUMBER_OF_PIZZA
+            description: "The number of pizzas that contain the respective ingredient."
+
+      - name: orders_data
+        description: "Stores general information about each pizza order, such as the order date, time, and batch."
+        columns:
+          - name: ORDER_ID
+            description: "A unique identifier for each order."
+          - name: DATE
+            description: "The date when the order was placed."
+          - name: TIME
+            description: "The time when the order was placed."
+          - name: BATCH
+            description: "The time batch when the order was processed."
+
+      - name: order_details
+        description: "Contains specific details of each order, such as the pizzas ordered and their quantities."
+        columns:
+          - name: ORDER_DETAILS_ID
+            description: "A unique identifier for each detail of an order."
+          - name: ORDER_ID
+            description: "Links to the order from orders_data."
+          - name: PIZZA_ID
+            description: "The ID of the pizza ordered."
+          - name: QUANTITY
+            description: "The number of pizzas ordered for the specific pizza ID."
+
+      - name: price_and_size
+        description: "Provides pricing information for different sizes of each pizza."
+        columns:
+          - name: PIZZA_ID
+            description: "The ID of the pizza."
+          - name: PIZZA_TYPE_ID
+            description: "The type ID of the pizza."
+          - name: SIZE
+            description: "The size of the pizza (e.g., Regular, Medium, Large)."
+          - name: PRICE
+            description: "The price for the respective size of the pizza."
+
+      - name: reviews_and_stars
+        description: "Stores customer reviews and ratings (stars) for each pizza."
+        columns:
+          - name: ORDER_ID
+            description: "Links to the order from orders_data."
+          - name: ORDER_DETAILS_ID
+            description: "The order detail ID related to the review."
+          - name: PIZZA_ID
+            description: "The pizza ID for the reviewed pizza."
+          - name: CATEGORY
+            description: "The category of the pizza (e.g., Veg, Non-Veg)."
+          - name: REVIEWS
+            description: "The customer review text."
+          - name: STARS
+            description: "The rating assigned by the customer (typically from 1-5)."
+
+      - name: side_orders
+        description: "Records detailed information about side orders placed with each pizza order."
+        columns:
+          - name: DATE
+            description: "The date when the order was placed."
+          - name: TIME
+            description: "The time when the order was placed."
+          - name: ORDER_DETAILS_ID
+            description: "The unique identifier for each order detail."
+          - name: ORDER_ID
+            description: "The order ID associated with the side order."
+          - name: PIZZA_ID
+            description: "The ID of the pizza ordered."
+          - name: PIZZA_TYPE_ID
+            description: "The type ID of the pizza ordered."
+          - name: SIZE
+            description: "The size of the pizza (e.g., Regular, Medium, Large)."
+          - name: CATEGORY
+            description: "The category of the pizza (e.g., Veg, Non-Veg)."
+          - name: QUANTITY
+            description: "The number of pizzas or side items ordered."
+          - name: PRICE
+            description: "The price of the ordered pizza or side items."
+          - name: DESSERTS
+            description: "The type of dessert ordered."
+          - name: DESSERTS_QUANTITY
+            description: "The quantity of desserts ordered."
+          - name: DESSERTPRICE
+            description: "The price of the ordered desserts."
+          - name: SIDE_ORDER
+            description: "The side orders included in the order."
+          - name: SIDE_ORDERS_QUANTITY
+            description: "The quantity of side orders."
+          - name: SIDE_ORDER_PRICE
+            description: "The price of the side orders."
+          - name: DRINKS
+            description: "The drinks included in the order."
+          - name: DRINKS_QUANTITY
+            description: "The quantity of drinks."
+          - name: DRINKS_PRICE
+            description: "The price of the drinks."
