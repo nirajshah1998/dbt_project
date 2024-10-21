@@ -1,5 +1,9 @@
 select 
 
+    DATE,
+
+    TIME,
+
     ORDER_DETAILS_ID,
 
     ORDER_ID,
