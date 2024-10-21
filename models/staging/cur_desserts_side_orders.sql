@@ -4,4 +4,4 @@ select
     initcap(DESSERTS) as DESSERTS,
     DESSERTS_QUANTITY,
     DESSERTPRICE
-from {{ ref('side_orders') }}
+from {{ ref('stg_side_orders') }}
