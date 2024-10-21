@@ -17,7 +17,7 @@ unnested_ingredients AS (
 )
 
 SELECT 
-    PIZZA_ID,
-    INGREDIENT
+    upper(PIZZA_ID) as PIZZA_ID,
+    upper(INGREDIENT) as INGREDIENT
 FROM unnested_ingredients
 ORDER BY PIZZA_ID, INGREDIENT
