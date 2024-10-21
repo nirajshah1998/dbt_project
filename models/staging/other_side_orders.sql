@@ -1,3 +1,5 @@
+with distinct_side_orders_others as (
+
 select 
 
 distinct
@@ -24,3 +26,16 @@ CAST(DRINKS_PRICE AS FLOAT) as DRINKS_PRICE
 
  from 
 {{ source('dominos_pizza', 'side_orders') }}
+)
+
+
+
+select 
+
+    ORDER_DETAILS_ID,
+    ORDER_ID,
+    SIDE_ORDER,
+    SIDE_ORDERS_QUANTITY,
+    SIDE_ORDER_PRICE
+
+from distinct_side_orders_others
