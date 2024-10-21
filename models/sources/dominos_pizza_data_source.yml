@@ -32,6 +32,10 @@ sources:
         columns:
           - name: ORDER_ID
             description: "A unique identifier for each order."
+            tests:
+              - not_null
+              - unique
+                  
           - name: DATE
             description: "The date when the order was placed."
           - name: TIME
