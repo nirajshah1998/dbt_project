@@ -1,0 +1,14 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: df07276.ap-southeast-1
+      user: nirajgshah1998
+      password: Nir123456
+      role: ACCOUNTADMIN
+      database: dbt_project
+      schema: DOMINOS_PIZZA_TRANSFORMED
+      warehouse: DBT_WAREHOUSE
+      threads: 1
+      client_session_keep_alive: False
