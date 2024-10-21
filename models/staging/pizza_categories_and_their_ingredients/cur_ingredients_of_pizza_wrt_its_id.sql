@@ -4,7 +4,7 @@ WITH source_data AS (
         PIZZA_NAME, 
         CATEGORY, 
         SPLIT(INGREDIENTS, ',') AS ingredient_list  
-    FROM stg_distinct_category_and_ingredients  -- Replace with your actual table name
+    FROM {{ ref('stg_distinct_category_and_ingredients') }}  -- Replace with your actual table name
 ),
 
 unnested_ingredients AS (
