@@ -1,19 +1,10 @@
-{{ config(
-    materialized='incremental',
-    unique_key='ORDER_DETAILS_ID',  
-    on_schema_change='sync_all_columns'
-) }}
--- Assuming ORDER_DETAILS_ID is unique
-
-
-
 WITH source_data AS (
     SELECT 
 
         DISTINCT
-
         TO_DATE(DATE, 'YYYY-MM-DD') AS DATE,
-        TO_TIME(RIGHT(TRIM(TIME), 8)) AS TIME,
+        -- Ensure proper time formatting and parse to the time type
+        TO_TIME(RIGHT(TRIM(TIME), 8), 'HH24:MI:SS') AS TIME,
 
         CAST(ORDER_DETAILS_ID AS NUMBER) AS ORDER_DETAILS_ID,
         CAST(ORDER_ID AS NUMBER) AS ORDER_ID,
@@ -38,17 +29,8 @@ WITH source_data AS (
         CAST(DRINKS_PRICE AS FLOAT) AS DRINKS_PRICE
     FROM 
         {{ source('dominos_pizza', 'side_orders') }}
-
-    {% if is_incremental() %}
-        -- Load only new records or updates based on date and time
-
-        WHERE TO_TIMESTAMP(DATE || ' ' || TIME, 'YYYY-MM-DD HH24:MI:SS') > 
-            (
-                SELECT MAX(TO_TIMESTAMP(DATE || ' ' || TIME, 'YYYY-MM-DD HH24:MI:SS'))
-                FROM {{ this }}
-            )
-
-    {% endif %}
 )
 
-SELECT * FROM source_data
+
+
+select * from source_data
