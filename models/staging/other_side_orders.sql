@@ -6,4 +6,4 @@ select
     SIDE_ORDERS_QUANTITY,
     SIDE_ORDER_PRICE
 
-from {{ ref('side_orders_incremental') }}
+from {{ ref('side_orders') }}

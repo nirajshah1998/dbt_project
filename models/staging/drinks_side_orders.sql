@@ -10,4 +10,4 @@ select
 
     DRINKS_PRICE
 
-from {{ ref('side_orders_incremental') }}
+from {{ ref('side_orders') }}
