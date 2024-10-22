@@ -36,11 +36,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  dbt_project_niraj:
-    # Applies to all files under models/example/
+  dbt_project_niraj:  # Your project name
+
+    staging:
+      +materialized: view
+
     consumption:
-      +materialized: 'table'
-
+      +materialized: table
+    
     curated:
-      +materialized: 'ephemeral'
-
+      +materialized: ephemeral
