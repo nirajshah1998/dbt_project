@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: stg_price_and_size
+    columns:
+      - name: PRICE
+        tests:
+          - not_null         
