@@ -3,7 +3,7 @@
     unique_key='ORDER_ID',
     on_schema_change='sync_all_columns') 
 }}
--- Assuming ORDER_ID is unique for each order
+-- ORDER_ID is unique for each order
 -- Allows schema changes for new columns.
 
 
@@ -27,5 +27,6 @@ WITH source_data AS (
 
     {% endif %}
 )
+
 
 SELECT * FROM source_data
