@@ -1,3 +1,10 @@
+{{
+    config(
+        materialized='table',
+        post_hook = "ALTER TABLE {{ this }} ADD ROW ACCESS POLICY FILTER_VEG_CATEGORY_POLICY ON (CATEGORY)"
+    )
+}}
+
 WITH ANS AS (SELECT 
 
     t1.PIZZA_NAME as PIZZA_NAME,
