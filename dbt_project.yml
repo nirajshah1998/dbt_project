@@ -44,5 +44,5 @@ models:
     consumption:
       +materialized: table
     
-    curated:
-      +materialized: ephemeral
+    # curated:
+    #   +materialized: ephemeral
