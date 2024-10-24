@@ -27,6 +27,7 @@ sources:
           - name: NUMBER_OF_PIZZA
             description: "The number of pizzas that contain the respective ingredient."
 
+
       - name: orders_data
         description: "Stores general information about each pizza order, such as the order date, time, and batch."
         columns:
